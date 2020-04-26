@@ -1,0 +1,1 @@
+module.exports.ditchWhitespace = str => str.replace(/>\s+</g, '><');

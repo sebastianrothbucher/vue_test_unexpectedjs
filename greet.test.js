@@ -1,4 +1,5 @@
 const mount = require('@vue/test-utils').mount;
+const ditchWhitespace = require('./utils').ditchWhitespace;
 const Greet = require('./greet');
 
 const expect = require('unexpected').clone();
@@ -20,11 +21,16 @@ describe('greet', () => {
         expect(wrapper.html(), 'when parsed as HTML', 'queried for first', 'h1', 'to match', 'h1.long');
         expect(wrapper.html(), 'when parsed as HTML', 'queried for first', 'p', 'to satisfy', `<p><a>Find out more</a></p>`);
         expect(wrapper.html(), 'when parsed as HTML', 'queried for first', 'div', 'to satisfy', { children: [
-            /.*/, // whitespace
+            /.*/, // whitespace - this sucks!
             { name: 'h1', textContent: /great to meet you/ },
-            /.*/, // whitespace
+            /.*/, // ditto
             { name: 'p' },
-            /.*/, // whitespace
+            /.*/, // ditto
+        ]});
+        // WAY better alternative for before line
+        expect(ditchWhitespace(wrapper.html()), 'when parsed as HTML', 'queried for first', 'div', 'to satisfy', { children: [
+            { name: 'h1', textContent: /great to meet you/ },
+            { name: 'p' },
         ]});
     });
 });
