@@ -1,0 +1,20 @@
+{
+  "name": "vue_test_unexpectedjs",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "http-server -a 127.0.0.1 -o /testindex.html .",
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.33",
+    "http-server": "^0.12.1",
+    "jest": "^25.4.0",
+    "unexpected": "^11.14.0",
+    "unexpected-dom": "^4.17.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
